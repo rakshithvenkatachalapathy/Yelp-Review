@@ -22,7 +22,6 @@ public class YelpStore {
     private TreeMap<String, BusinessDetails> business;
     private ReviewComp comp;
     private BusinessComp bcomp;
-    private NeighbourhoodComp hcomp;
     private NameComp ncomp;
     private TreeMap<String, String> businessIdList;
     private TreeMap<String, String> sortedList;
@@ -35,7 +34,6 @@ public class YelpStore {
     public YelpStore() {
         comp = new ReviewComp();
         bcomp = new BusinessComp();
-        hcomp = new NeighbourhoodComp();
         users = new TreeMap<>();
         businessIdList = new TreeMap<String, String>();
         ncomp = new NameComp(businessIdList);
@@ -200,7 +198,7 @@ public class YelpStore {
 
         String ret = "";
         String temp = "";
-        
+
         for (String key : sortedList.keySet()) {
             ret += sortedList.get(key) + " - " + business.get(key).getCity() + ", " +
                     business.get(key).getState() + " (" + business.get(key).getLatitude() + ", " +
