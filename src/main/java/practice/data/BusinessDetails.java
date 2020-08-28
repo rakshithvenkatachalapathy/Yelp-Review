@@ -70,4 +70,9 @@ public class BusinessDetails {
         return neighborhoods;
     }
 
+    @Override
+    public String toString() {
+        return this.getCity() + ", " + this.getState() + " (" + this.getLatitude() + ", " + this.getLongitude() + ")" + " (";
+    }
+
 }

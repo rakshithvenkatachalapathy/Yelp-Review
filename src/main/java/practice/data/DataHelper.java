@@ -29,7 +29,6 @@ public class DataHelper {
             try (JsonReader jsonReader = new JsonReader(new StringReader(input))) {
                 jsonReader.beginObject();
 
-
                 while (jsonReader.hasNext()) {
                     String name = jsonReader.nextName();
                     if (name.equals("business_id")) {
@@ -53,14 +52,12 @@ public class DataHelper {
                         date = "";
                         userId = "";
                     }
-
                 }
                 jsonReader.endObject();
             } catch (IOException e) {
                 System.out.println("Could not read from file");
             }
         }
-
     }
 
     public void loadBusiness(String jsonFilename) throws FileNotFoundException {

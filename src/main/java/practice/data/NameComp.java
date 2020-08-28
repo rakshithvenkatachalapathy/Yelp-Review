@@ -2,10 +2,9 @@ package practice.data;
 
 import java.util.Comparator;
 import java.util.Map;
-import java.util.TreeMap;
 
 public class NameComp implements Comparator<String> {
-    Map<String, String> base;
+    private Map<String, String> base;
 
     public NameComp(Map<String, String> base) {
         this.base = base;

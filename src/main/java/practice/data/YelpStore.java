@@ -17,7 +17,6 @@ import com.google.gson.JsonParser;
  */
 public class YelpStore {
 
-    // TODO: Define data members here.
     private TreeMap<String, TreeSet<ReviewDetails>> reviews;
     private TreeMap<String, BusinessDetails> business;
     private ReviewComp comp;
@@ -26,7 +25,6 @@ public class YelpStore {
     private TreeMap<String, String> businessIdList;
     private TreeMap<String, String> sortedList;
     private TreeMap<String, String> users;
-
 
     /**
      * Constructor. Create an empty YelpStore.
@@ -93,10 +91,9 @@ public class YelpStore {
      */
     public boolean addBusiness(String businessId, String name, String city, String state, double lat, double lon) {
         try {
-            //bSet.add(new BusinessDetails(businessId, name, city, state, lat, lon));
+
             business.put(businessId, new BusinessDetails(businessId, name, city, state, lat, lon));
             businessIdList.put(businessId, name);
-            //sortedList.putAll(businessIdList);
             for (String key : businessIdList.keySet()) {
                 sortedList.put(key, businessIdList.get(key));
             }
@@ -148,9 +145,7 @@ public class YelpStore {
      */
     public boolean addBusiness(String businessId, String name, String city, String state, double lat, double lon, String neighborhoods) {
         try {
-            //bSet.add(new BusinessDetails(businessId, name, city, state, lat, lon, neighborhoods));
             business.put(businessId, new BusinessDetails(businessId, name, city, state, lat, lon, neighborhoods));
-            //businessIdList.add(businessId);
             businessIdList.put(businessId, name);
             sortedList.putAll(businessIdList);
             return true;
@@ -159,7 +154,6 @@ public class YelpStore {
         }
         return false;
     }
-
 
     /**
      * Add a new user.
@@ -195,15 +189,11 @@ public class YelpStore {
      * @return string representation of the data store
      */
     public String toString() {
-
         String ret = "";
         String temp;
-
         for (String key : sortedList.keySet()) {
             temp = "";
-            ret += sortedList.get(key) + " - " + business.get(key).getCity() + ", " +
-                    business.get(key).getState() + " (" + business.get(key).getLatitude() + ", " +
-                    business.get(key).getLongitude() + ")" + " (";
+            ret += sortedList.get(key) + " - " + business.get(key).toString();
 
             if (business.get(key).getNeighborhoods() != null)
                 temp = business.get(key).getNeighborhoods().toString();
@@ -218,11 +208,6 @@ public class YelpStore {
 
             String tokens[] = temp.split(", ");
             Arrays.sort(tokens);
-
-            if (tokens[0].equals("\"\""))
-                temp = "";
-            else
-                temp = tokens.toString();
 
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < tokens.length; i++) {
@@ -239,7 +224,7 @@ public class YelpStore {
                 while (i.hasNext()) {
                     ReviewDetails rd = (ReviewDetails) i.next();
                     ret += rd.getRating() + " - ";
-                    if (users.get(rd.getUserId()) != null)
+                    if (users.get(rd.getUserId()) != null) //If the User is not on the list
                         ret += users.get(rd.getUserId());
                     ret += ": " + rd.getReview();
                     ret += System.lineSeparator();
