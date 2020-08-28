@@ -220,25 +220,4 @@ public class SimpleYelpStoreTest {
         }
 
     }
-
-    @Test(timeout = TestUtils.TIMEOUT)
-    public void testNeighbourhood() {
-        String testName = "testSimpleAdd";
-        YelpStore store = new YelpStore();
-        JsonObject jo = new JsonObject();
-        JsonArray ja = new JsonArray();
-
-        ja.add("zrqak");
-        ja.add("asac");
-        jo.add("neighbouhood", ja);
-
-        store.addUser("user-id", "Bob1");
-        store.addReview("bus-id", 2, "Bad review", "2011-11-11", "user-id");
-        store.addBusiness("bus-id", "Bus Name", "Austin", "TX", 12.345, 98.765, ja);
-
-        String expected = "Bus Name - Austin, TX (12.345, 98.765) ()\n" +
-                "2 - Bob1: Bad review";
-
-        Assert.assertEquals(String.format("%n" + "Test Case: %s%n", testName), expected, store.toString().trim());
-    }
 }

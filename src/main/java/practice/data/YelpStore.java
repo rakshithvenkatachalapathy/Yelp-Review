@@ -197,9 +197,10 @@ public class YelpStore {
     public String toString() {
 
         String ret = "";
-        String temp = "";
+        String temp;
 
         for (String key : sortedList.keySet()) {
+            temp = "";
             ret += sortedList.get(key) + " - " + business.get(key).getCity() + ", " +
                     business.get(key).getState() + " (" + business.get(key).getLatitude() + ", " +
                     business.get(key).getLongitude() + ")" + " (";
@@ -218,7 +219,11 @@ public class YelpStore {
             String tokens[] = temp.split(", ");
             Arrays.sort(tokens);
 
-            temp = tokens.toString();
+            if (tokens[0].equals("\"\""))
+                temp = "";
+            else
+                temp = tokens.toString();
+
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < tokens.length; i++) {
                 sb.append(tokens[i]);
